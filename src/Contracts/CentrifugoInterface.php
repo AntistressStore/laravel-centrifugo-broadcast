@@ -121,10 +121,11 @@ interface CentrifugoInterface
      * @param int    $exp
      * @param array  $info
      * @param array  $channels
+     * @param array  $meta
      *
      * @return string
      */
-    public function generateConnectionToken(string $userId = '', int $exp = 0, array $info = [], array $channels = []);
+        public function generateConnectionToken(string $userId = '', int $exp = 0, array $info = [], array $channels = [], array $meta = []);
 
     /**
      * Generate private channel token.
