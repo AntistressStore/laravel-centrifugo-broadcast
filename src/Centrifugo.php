@@ -241,31 +241,24 @@ class Centrifugo implements CentrifugoInterface
      */
     protected function send(string $method, array $params = []): array
     {
-        $json = json_encode(['method' => $method, 'params' => $params]);
-
         $headers = [
             'Content-type' => 'application/json',
-            'Authorization' => 'apikey '.$this->getApiKey(),
+            'X-API-Key' => $this->getApiKey(),
         ];
 
         try {
-            $url = parse_url($this->prepareUrl());
+            $url = $this->prepareUrl();
 
-            $config = collect([
+            $request_config = [
+                'base_uri' => $url,
                 'headers' => $headers,
-                'body' => $json,
+                'json' => $params,
                 'http_errors' => true,
-            ]);
+                'verify' => $this->config['verify'],
+                'ssl_key' => $this->config['ssl_key'],
+            ];
 
-            if (isset($url['scheme']) && $url['scheme'] == 'https') {
-                $config->put('verify', collect($this->config)->get('verify', false));
-
-                if (collect($this->config)->get('ssl_key')) {
-                    $config->put('ssl_key', collect($this->config)->get('ssl_key'));
-                }
-            }
-
-            $response = $this->httpClient->post($this->prepareUrl(), $config->toArray());
+            $response = $this->httpClient->post($method, $request_config);
 
             $result = json_decode((string) $response->getBody(), true);
         } catch (ClientException $e) {
@@ -290,7 +283,7 @@ class Centrifugo implements CentrifugoInterface
             $address .= static::API_PATH;
         }
 
-        return $address;
+        return $address.'/';
     }
 
     /**
