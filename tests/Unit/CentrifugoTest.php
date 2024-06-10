@@ -14,7 +14,7 @@ use GuzzleHttp\Exception\ConnectException;
  */
 class CentrifugoTest extends TestCase
 {
-    public function testGenerateToken()
+    public function testGenerateToken(): void
     {
         $timestamp = 1491650279;
         $info = [
@@ -36,21 +36,13 @@ class CentrifugoTest extends TestCase
         );
     }
 
-    public function testCentrifugoApiPublish()
+    public function testCentrifugoApiPublish(): void
     {
         $publish = $this->centrifuge->publish('test-test', ['event' => 'test-event']);
         $this->assertEquals(['result' => []], $publish);
     }
 
-    // public function testCentrifugoApiPublishMany()
-    // {
-    //     $publish = $this->centrifuge->publishMany(
-    //         [['channel' => 'test-channel:1', 'data' => 'Hello'], ['channel' => 'test-channel:2', 'data' => 'World']]
-    //     );
-    //     $this->assertEquals([], $publish);
-    // }
-
-    public function testCentrifugoApiBroadcast()
+    public function testCentrifugoApiBroadcast(): void
     {
         $broadcast = $this->centrifuge->broadcast(['test-channel-1', 'test-channel-2'], ['event' => 'test-event']);
         $this->assertEquals([
@@ -63,14 +55,14 @@ class CentrifugoTest extends TestCase
         ], $broadcast);
     }
 
-    public function testCentrifugoApiPresence()
+    public function testCentrifugoApiPresence(): void
     {
         $presence = $this->centrifuge->presence('test-channel');
         $this->assertEquals('not available', $presence['error']['message']);
         $this->assertEquals(108, $presence['error']['code']);
     }
 
-    public function testCentrifugoApiHistory()
+    public function testCentrifugoApiHistory(): void
     {
         $history = $this->centrifuge->history('test-channel');
         $this->assertIsArray($history['error']);
@@ -78,13 +70,13 @@ class CentrifugoTest extends TestCase
         $this->assertEquals(108, $history['error']['code']);
     }
 
-    public function testCentrifugoApiChannels()
+    public function testCentrifugoApiChannels(): void
     {
         $channels = $this->centrifuge->channels();
         $this->assertArrayHasKey('channels', $channels['result']);
     }
 
-    public function testCentrifugoApiUnsubscribe()
+    public function testCentrifugoApiUnsubscribe(): void
     {
         $unsubscribe = $this->centrifuge->unsubscribe('test-channel', '1');
         // $this->assertEquals('not available', $unsubscribe['error']['message']);
@@ -92,14 +84,14 @@ class CentrifugoTest extends TestCase
         $this->assertEquals([], $unsubscribe['result']);
     }
 
-    public function testCentrifugoApiSubscribe()
+    public function testCentrifugoApiSubscribe(): void
     {
         $subscribe = $this->centrifuge->unsubscribe('test-channel', '1');
         $this->assertEquals([], $subscribe['result']);
     }
 
     // 108 может быть возвращено при попытке доступа к истории или присутствию в канале
-    public function testCentrifugoApiStats()
+    public function testCentrifugoApiStats(): void
     {
         $stats = $this->centrifuge->presenceStats('test-channel');
         $this->assertEquals('not available', $stats['error']['message']);
@@ -112,7 +104,7 @@ class CentrifugoTest extends TestCase
         // ], $stats);
     }
 
-    public function testTimeoutFunction()
+    public function testTimeoutFunction(): void
     {
         $timeout = 3;
         $delta = 0.5;
@@ -144,7 +136,7 @@ class CentrifugoTest extends TestCase
         }
     }
 
-    public function testTriesFunction()
+    public function testTriesFunction(): void
     {
         $timeout = 1;
         $tries = 3;

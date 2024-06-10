@@ -1,7 +1,9 @@
 /.idea
 .idea
 .phpunit.result.cache
+/.phpunit.cache
 /composer.lock
 /vendor/
 /centrifugo/
 .php-cs-fixer.cache
+/build
