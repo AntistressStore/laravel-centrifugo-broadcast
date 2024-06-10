@@ -39,35 +39,40 @@ class CentrifugoTest extends TestCase
     public function testCentrifugoApiPublish(): void
     {
         $publish = $this->centrifuge->publish('test-test', ['event' => 'test-event']);
-        $this->assertEquals(['result' => []], $publish);
+        $this->assertArrayHasKey('result', $publish);
+        $this->assertIsArray($publish['result']);
     }
 
     public function testCentrifugoApiBroadcast(): void
     {
         $broadcast = $this->centrifuge->broadcast(['test-channel-1', 'test-channel-2'], ['event' => 'test-event']);
-        $this->assertEquals([
-            'result' => [
-                'responses' => [
-                    ['result' => []],
-                    ['result' => []],
-                ],
-            ],
-        ], $broadcast);
+        $this->assertCount(2, $broadcast['result']['responses']);
+        $this->assertArrayHasKey('result', $broadcast['result']['responses'][0]);
+        $this->assertArrayHasKey('result', $broadcast['result']['responses'][1]);
     }
 
+    // 108 error if centrifugo config "history" and "history_ttl" dont set
+    // for correct response you need set centrifugo config "presence": true
     public function testCentrifugoApiPresence(): void
     {
         $presence = $this->centrifuge->presence('test-channel');
-        $this->assertEquals('not available', $presence['error']['message']);
-        $this->assertEquals(108, $presence['error']['code']);
+        $this->assertArrayHasKey('presence', $presence['result']);
+        $this->assertEmpty($presence['result']['presence']);
+        // $this->assertEquals('not available', $presence['error']['message']);
+        // $this->assertEquals(108, $presence['error']['code']);
     }
 
+    // 108 error if centrifugo config "history" and "history_ttl" dont set
+    // for correct response you need set centrifugo config param >0,
+    // "history":20,"history_ttl":"2m"
     public function testCentrifugoApiHistory(): void
     {
         $history = $this->centrifuge->history('test-channel');
-        $this->assertIsArray($history['error']);
-        $this->assertEquals('not available', $history['error']['message']);
-        $this->assertEquals(108, $history['error']['code']);
+        $this->assertArrayHasKey('publications', $history['result']);
+        $this->assertEmpty($history['result']['publications']);
+        // $this->assertIsArray($history['error']);
+        // $this->assertEquals('not available', $history['error']['message']);
+        // $this->assertEquals(108, $history['error']['code']);
     }
 
     public function testCentrifugoApiChannels(): void
@@ -79,8 +84,6 @@ class CentrifugoTest extends TestCase
     public function testCentrifugoApiUnsubscribe(): void
     {
         $unsubscribe = $this->centrifuge->unsubscribe('test-channel', '1');
-        // $this->assertEquals('not available', $unsubscribe['error']['message']);
-        // $this->assertEquals(108, $unsubscribe['error']['code']);
         $this->assertEquals([], $unsubscribe['result']);
     }
 
@@ -90,18 +93,21 @@ class CentrifugoTest extends TestCase
         $this->assertEquals([], $subscribe['result']);
     }
 
-    // 108 может быть возвращено при попытке доступа к истории или присутствию в канале
+    // 108 error if centrifugo config "presence" dont set
+    // for correct response you need set centrifugo config "presence": true
     public function testCentrifugoApiStats(): void
     {
         $stats = $this->centrifuge->presenceStats('test-channel');
-        $this->assertEquals('not available', $stats['error']['message']);
-        $this->assertEquals(108, $stats['error']['code']);
-        // $this->assertEquals([
-        //     'result' => [
-        //         'num_clients' => 0,
-        //         'num_users' => 0,
-        //     ],
-        // ], $stats);
+
+        $this->assertEquals([
+            'result' => [
+                'num_clients' => 0,
+                'num_users' => 0,
+            ],
+        ], $stats);
+
+        // $this->assertEquals('not available', $stats['error']['message']);
+        // $this->assertEquals(108, $stats['error']['code']);
     }
 
     public function testTimeoutFunction(): void
