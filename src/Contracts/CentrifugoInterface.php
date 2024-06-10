@@ -29,7 +29,7 @@ interface CentrifugoInterface
     /**
      * Get channel history information (list of last messages sent into channel).
      */
-    public function history(string $channel, $limit = 0, $since = [], $reverse = false): mixed;
+    public function history(string $channel, int $limit = 0, array $since = [], bool $reverse = false): mixed;
 
     /**
      * Remove channel history information .
