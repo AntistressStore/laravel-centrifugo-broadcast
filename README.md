@@ -17,8 +17,11 @@ Centrifugo broadcaster for laravel  , based on:
 - [LaraComponents/centrifugo-broadcaster](https://github.com/LaraComponents/centrifugo-broadcaster)
 - [centrifugal/phpcent](https://github.com/centrifugal/phpcent)
 
+Test based on:
+- [Opekunov/laravel-centrifugo-broadcaster](https://github.com/Opekunov/laravel-centrifugo-broadcaster)
+
 ## Features
-- Compatible with latest [Centrifugo 3.2.0](https://github.com/centrifugal/centrifugo/releases/tag/v3.2.0) 🚀
+- Compatible with latest [Centrifugo 4](https://github.com/centrifugal/centrifugo/releases/tag/v4.1.5) 🚀
 - Wrapper over [Centrifugo HTTP API](https://centrifugal.dev/docs/server/server_api) 🔌
 - Authentication with JWT token (HMAC algorithm) for anonymous, authenticated user and private channel 🗝️
 
@@ -26,7 +29,7 @@ Centrifugo broadcaster for laravel  , based on:
 - PHP >= 7.4 , 8.0, 8.1
 - Laravel 8.75.0 - 11.0
 - guzzlehttp/guzzle 6 - 7
-- Centrifugo Server 3.2.0 or newer (see [here](https://github.com/centrifugal/centrifugo))
+- Centrifugo Server 4 or newer (see [here](https://github.com/centrifugal/centrifugo))
 
 ## Installation
 
