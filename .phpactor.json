@@ -1,0 +1,4 @@
+{
+    "$schema": "/home/yoda/phpactor/phpactor.schema.json",
+    "language_server_phpstan.enabled": true
+}

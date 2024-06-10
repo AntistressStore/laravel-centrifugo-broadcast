@@ -1,15 +1,16 @@
 <?php
 
-namespace Opekunov\Centrifugo\Tests;
+namespace denis660\Centrifugo\Test;
 
-use Opekunov\Centrifugo\Centrifugo;
-use Opekunov\Centrifugo\CentrifugoServiceProvider;
+use denis660\Centrifugo\{Centrifugo, CentrifugoServiceProvider};
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class TestCase extends \Orchestra\Testbench\TestCase
 {
-    /**
-     * @var Centrifugo
-     */
     protected Centrifugo $centrifuge;
 
     public function setUp(): void
@@ -32,7 +33,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
             'driver' => 'centrifugo',
             'secret' => 'bbe7d157-a253-4094-9759-06a8236543f9',
             'apikey' => 'd7627bb6-2292-4911-82e1-615c0ed3eebb',
-            'url'    => 'http://host.docker.internal:8001',
+            'url' => 'http://host.docker.internal:8001',
         ]);
     }
 }

@@ -1,11 +1,15 @@
 <?php
 
-namespace Opekunov\Centrifugo\Tests\Unit;
+namespace denis660\Centrifugo\Test\Unit;
 
-use Opekunov\Centrifugo\Centrifugo;
-use Opekunov\Centrifugo\Exceptions\CentrifugoConnectionException;
-use Opekunov\Centrifugo\Tests\TestCase;
+use denis660\Centrifugo\Centrifugo;
+use denis660\Centrifugo\Test\TestCase;
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class CentrifugoTest extends TestCase
 {
     public function testGenerateToken()
@@ -13,7 +17,7 @@ class CentrifugoTest extends TestCase
         $timestamp = 1491650279;
         $info = [
             'first_name' => 'Aleksandr',
-            'last_name'  => 'Opekunov',
+            'last_name' => 'Opekunov',
         ];
         $clientId = '0c951315-be0e-4516-b99e-05e60b0cc317';
 
@@ -95,7 +99,7 @@ class CentrifugoTest extends TestCase
         $this->assertEquals([
             'result' => [
                 'num_clients' => 0,
-                'num_users'   => 0,
+                'num_users' => 0,
             ],
         ], $stats);
     }
@@ -107,13 +111,13 @@ class CentrifugoTest extends TestCase
 
         $badCentrifugo = new Centrifugo(
             [
-                'driver'   => 'centrifugo',
-                'secret'   => 'd55bf295-bee6-4259-8912-0a58f44ed30e',
-                'apikey'   => '0c951315-be0e-4516-b99e-05e60b0cc307_',
+                'driver' => 'centrifugo',
+                'secret' => 'd55bf295-bee6-4259-8912-0a58f44ed30e',
+                'apikey' => '0c951315-be0e-4516-b99e-05e60b0cc307_',
                 'api_path' => '',
-                'url'      => 'https://httpstat.us/200?sleep=20000',
-                'timeout'  => $timeout,
-                'tries'    => 1,
+                'url' => 'https://httpstat.us/200?sleep=20000',
+                'timeout' => $timeout,
+                'tries' => 1,
             ]
         );
 
@@ -139,13 +143,13 @@ class CentrifugoTest extends TestCase
 
         $badCentrifugo = new Centrifugo(
             [
-                'driver'   => 'centrifugo',
-                'secret'   => 'd55bf295-bee6-4259-8912-0a58f44ed30e',
-                'apikey'   => '0c951315-be0e-4516-b99e-05e60b0cc307_',
+                'driver' => 'centrifugo',
+                'secret' => 'd55bf295-bee6-4259-8912-0a58f44ed30e',
+                'apikey' => '0c951315-be0e-4516-b99e-05e60b0cc307_',
                 'api_path' => '',
-                'url'      => 'https://httpstat.us/200?sleep=20000',
-                'timeout'  => $timeout,
-                'tries'    => $tries,
+                'url' => 'https://httpstat.us/200?sleep=20000',
+                'timeout' => $timeout,
+                'tries' => $tries,
             ]
         );
 
