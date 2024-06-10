@@ -1,0 +1,14 @@
+
+
+[1;37;40mCode Coverage Report:     [0m
+[1;37;40m  2024-06-10 14:14:09     [0m
+[1;37;40m                          [0m
+[1;37;40m Summary:                 [0m
+[37;41m  Classes:  0.00% (0/3)   [0m
+[37;41m  Methods: 48.48% (16/33) [0m
+[30;43m  Lines:   58.79% (97/165)[0m
+
+denis660\Centrifugo\Centrifugo
+  [30;43mMethods:  71.43% (15/21)[0m   [30;43mLines:  80.00% ( 88/110)[0m
+denis660\Centrifugo\CentrifugoServiceProvider
+  [37;41mMethods:  50.00% ( 1/ 2)[0m   [30;42mLines:  90.00% (  9/ 10)[0m

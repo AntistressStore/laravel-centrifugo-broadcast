@@ -31,9 +31,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
         $app['config']->set('broadcasting.default', 'centrifugo');
         $app['config']->set('broadcasting.connections.centrifugo', [
             'driver' => 'centrifugo',
-            'secret' => 'bbe7d157-a253-4094-9759-06a8236543f9',
-            'apikey' => 'd7627bb6-2292-4911-82e1-615c0ed3eebb',
-            'url' => 'http://host.docker.internal:8001',
+            'token_hmac_secret_key' => '',
+            'api_key' => '',
+            'url' => 'http://localhost:8000',
         ]);
     }
 }
