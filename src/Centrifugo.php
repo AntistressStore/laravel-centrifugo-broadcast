@@ -246,18 +246,18 @@ class Centrifugo implements CentrifugoInterface
             'X-API-Key' => $this->getApiKey(),
         ];
 
+        $url = $this->prepareUrl();
+
+        $request_config = [
+            'base_uri' => $url,
+            'headers' => $headers,
+            'json' => $params,
+            'http_errors' => true,
+            'verify' => $this->config['verify'],
+            'ssl_key' => $this->config['ssl_key'],
+        ];
+
         try {
-            $url = $this->prepareUrl();
-
-            $request_config = [
-                'base_uri' => $url,
-                'headers' => $headers,
-                'json' => $params,
-                'http_errors' => true,
-                'verify' => $this->config['verify'],
-                'ssl_key' => $this->config['ssl_key'],
-            ];
-
             $response = $this->httpClient->post($method, $request_config);
 
             $result = json_decode((string) $response->getBody(), true);

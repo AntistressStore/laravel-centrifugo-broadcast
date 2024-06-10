@@ -13,7 +13,7 @@
 </p>
 
 ## Introduction
-Centrifugo broadcaster for laravel  , based on:
+Centrifugo broadcaster for Laravel, based on:
 - [LaraComponents/centrifugo-broadcaster](https://github.com/LaraComponents/centrifugo-broadcaster)
 - [centrifugal/phpcent](https://github.com/centrifugal/phpcent)
 
@@ -21,22 +21,23 @@ Test based on:
 - [Opekunov/laravel-centrifugo-broadcaster](https://github.com/Opekunov/laravel-centrifugo-broadcaster)
 
 ## Features
-- Compatible with latest [Centrifugo 4](https://github.com/centrifugal/centrifugo/releases/tag/v4.1.5) 🚀
-- Wrapper over [Centrifugo HTTP API](https://centrifugal.dev/docs/server/server_api) 🔌
+- Compatible with latest [Centrifugo 5](https://github.com/centrifugal/centrifugo/releases/tag/v5.0.4) 🚀
+- Wrapper over [Centrifugo v5 HTTP API](https://centrifugal.dev/docs/server/server_api) 🔌
 - Authentication with JWT token (HMAC algorithm) for anonymous, authenticated user and private channel 🗝️
 
+
 ## Requirements
-- PHP >= 7.4 , 8.0, 8.1
+- PHP >= 7.4
 - Laravel 8.75.0 - 11.0
-- guzzlehttp/guzzle 6 - 7
-- Centrifugo Server 4 or newer (see [here](https://github.com/centrifugal/centrifugo))
+- Guzzlehttp/Guzzle 6 - 7
+- Centrifugo Server 5 or newer (see [here](https://github.com/centrifugal/centrifugo))
 
 ## Installation
 
 Require this package with composer:
 
 ```bash
-composer req denis660/laravel-centrifugo
+composer require denis660/laravel-centrifugo
 ```
 
 
@@ -95,7 +96,6 @@ A simple client usage example:
 declare(strict_types = 1);
 
 namespace App\Http\Controllers;
-
 
 use denis660\Centrifugo\Centrifugo;
 use Illuminate\Support\Facades\Auth;
